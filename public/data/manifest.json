@@ -1,0 +1,69 @@
+{
+  "station": "MB4X",
+  "contest": "IARU-HF",
+  "operators": [
+    "W7WLW",
+    "N4ML"
+  ],
+  "claimedScore": 3532170,
+  "contestStart": "2026-07-11T12:00:00Z",
+  "contestEnd": "2026-07-12T12:00:00Z",
+  "audioStart": "2026-07-11T11:45:37.000Z",
+  "audioEnd": "2026-07-12T11:59:40.669Z",
+  "recorderClock": "Europe/London (BST, UTC+1)",
+  "channelMap": {
+    "0": "right",
+    "1": "left"
+  },
+  "chunks": [
+    {
+      "id": 1,
+      "file": "/audio/recording-01.mp3",
+      "start": "2026-07-11T11:45:37.000Z",
+      "duration": 12173.200544217687
+    },
+    {
+      "id": 2,
+      "file": "/audio/recording-02.mp3",
+      "start": "2026-07-11T15:08:30.000Z",
+      "duration": 12173.200544217687
+    },
+    {
+      "id": 3,
+      "file": "/audio/recording-03.mp3",
+      "start": "2026-07-11T18:31:23.000Z",
+      "duration": 12173.200544217687
+    },
+    {
+      "id": 4,
+      "file": "/audio/recording-04.mp3",
+      "start": "2026-07-11T21:54:16.000Z",
+      "duration": 12173.200544217687
+    },
+    {
+      "id": 5,
+      "file": "/audio/recording-05.mp3",
+      "start": "2026-07-12T01:17:09.000Z",
+      "duration": 12173.200544217687
+    },
+    {
+      "id": 6,
+      "file": "/audio/recording-06.mp3",
+      "start": "2026-07-12T04:40:02.000Z",
+      "duration": 12173.200544217687
+    },
+    {
+      "id": 7,
+      "file": "/audio/recording-07.mp3",
+      "start": "2026-07-12T08:02:55.000Z",
+      "duration": 12173.200544217687
+    },
+    {
+      "id": 8,
+      "file": "/audio/recording-08.mp3",
+      "start": "2026-07-12T11:25:48.000Z",
+      "duration": 2032.6690249433107
+    }
+  ],
+  "channelMapSource": "audio activity correlation"
+}

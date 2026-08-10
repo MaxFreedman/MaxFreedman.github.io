@@ -1,0 +1,41 @@
+{
+  "generatedAt": "2026-08-10T05:14:52Z",
+  "source": "stereo MP3 activity envelope",
+  "channelCorrelation": {
+    "matrix": [
+      [
+        0.0925,
+        0.258
+      ],
+      [
+        0.1281,
+        0.1122
+      ]
+    ],
+    "directScore": 0.2047,
+    "swappedScore": 0.3861,
+    "suggestedMap": "swapped",
+    "strength": 0.1814
+  },
+  "appliedChannelMap": {
+    "0": "right",
+    "1": "left"
+  },
+  "windowSeconds": 0.5,
+  "estimatedContacts": 4605,
+  "confidence": {
+    "medium": 2081,
+    "high": 2309,
+    "low": 215
+  },
+  "byMode": {
+    "CW": 3443,
+    "PH": 1162
+  },
+  "medianEstimatedSecond": 29.8,
+  "limitations": [
+    "Cabrillo timestamps contain minutes but no seconds.",
+    "Estimates use channel activity and chronological log order; they do not decode Morse or speech.",
+    "Cue timestamps include 4 seconds of CW pre-roll or 7 seconds of SSB pre-roll."
+  ]
+}
