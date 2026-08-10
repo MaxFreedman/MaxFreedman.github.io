@@ -1,41 +1,46 @@
-# MB4X Radio Archive
+# Max Freedman — Projects
 
-An interactive explorer for the MB4X IARU HF 2026 contest log and its synchronized stereo field recording. Audio-activity correlation identified Radio 0 on the right channel and Radio 1 on the left; the interface can solo either radio, preserve the stereo split, mix both to center, or manually swap the assignment.
+The source for Max Freedman's personal GitHub Pages site. The home page introduces the project collection; the first published project is the MB4X Radio Archive.
 
-## Run locally
+## Routes
+
+- `/` — personal home and projects
+- `/projects/mb4x-radio-archive/` — interactive MB4X IARU HF 2026 log and synchronized stereo recording
+
+The archive contains 4,606 contacts and eight browser-ready MP3 segments. Audio-activity correlation identified Radio 0 on the right channel and Radio 1 on the left. The player can solo either radio, preserve stereo, or mix both channels.
+
+## Develop locally
 
 ```bash
 npm install
 npm run dev
 ```
 
-Open the local address shown in the terminal.
+## Rebuild the archive
 
-## Rebuild the data
-
-The checked-in contact index and audio manifest are generated from the supplied Cabrillo log:
+Generate the contact index and audio manifest from the Cabrillo log:
 
 ```bash
 node scripts/prepare-data.mjs /path/to/mb4x.txt
 ```
 
-The eight browser-ready MP3 segments are derived from the supplied ZIP archives without modifying the originals:
+Prepare the eight MP3 segments from the source ZIP archives:
 
 ```bash
 ./scripts/prepare-audio.sh /path/to/download-folder
 ```
 
-Generate audio-derived second estimates after preparing the log and audio:
+Generate audio-derived timing estimates:
 
 ```bash
-/Users/maxfreedman/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3 scripts/analyze-audio.py
+python3 scripts/analyze-audio.py
 ```
 
-This measures half-second activity independently on each stereo channel. Contacts within the same logged radio/minute are placed chronologically across the detected activity, with four seconds of pre-roll for CW and seven seconds for SSB. These are estimates because Cabrillo stores no seconds; the original minute remains available in every contact record.
+The analysis measures half-second activity independently on each stereo channel. Contacts in the same logged radio/minute are distributed across detected activity, with four seconds of pre-roll for CW and seven seconds for SSB. These are estimates because Cabrillo records minutes, not seconds.
 
-The recorder metadata places the first audio sample at 2026-07-11 12:45:37 British Summer Time, or 11:45:37 UTC. The contest therefore begins 14 minutes 23 seconds into the first recording. The final recording ends at 11:59:40 UTC, about 19 seconds before the final 12:00 log entry.
+## Publish
 
-## Validation
+The workflow in `.github/workflows/pages.yml` builds and deploys the static site whenever `main` changes. GitHub Pages must be configured to use **GitHub Actions** as its source.
 
 ```bash
 npm run lint
