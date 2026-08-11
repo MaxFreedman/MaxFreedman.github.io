@@ -7,8 +7,11 @@ test("static export contains the personal home and MB4X project", async () => {
     readFile(new URL("../dist/index.html", import.meta.url), "utf8"),
     readFile(new URL("../dist/projects/mb4x-radio-archive/index.html", import.meta.url), "utf8"),
   ]);
-  assert.match(home, /<title>Max Freedman — Projects<\/title>/i);
+  assert.match(home, /<title>Max Freedman \/ N4ML<\/title>/i);
   assert.match(home, /src="\/assets\/[^\"]+\.js"/i);
+  const homeSource = await readFile(new URL("../app/page.tsx", import.meta.url), "utf8");
+  assert.match(homeSource, /whole site is AI experimentation/i);
+  assert.match(homeSource, /3Y0K Bouvet Island expedition/i);
   const html = archive;
   assert.match(html, /<title>MB4X Radio Archive<\/title>/i);
   assert.match(html, /maxfreedman\.github\.io\/projects\/mb4x-radio-archive/i);
