@@ -4,6 +4,7 @@ export default function HomePage() {
       <nav className="site-nav" aria-label="Primary navigation">
         <a className="site-wordmark" href="/">MF</a>
         <div>
+          <a href="#about">About</a>
           <a href="#projects">Projects</a>
           <a href="https://github.com/MaxFreedman">GitHub</a>
         </div>
@@ -11,19 +12,70 @@ export default function HomePage() {
 
       <section className="personal-hero">
         <div className="hero-copy">
-          <span className="personal-kicker">Max Freedman</span>
-          <h1>I make technical material easier to explore.</h1>
+          <span className="personal-kicker">Max Freedman / N4ML</span>
+          <h1>Radio, faraway places, and overly specific software.</h1>
           <p>
-            This is a home for experiments and tools built around recordings,
-            data, and the stories hidden inside them.
+            I&apos;m Max. I work in amateur-radio education, operate contests,
+            and build small tools for things that don&apos;t quite have tools yet.
           </p>
-          <a className="hero-link" href="#projects">See the work <span>↓</span></a>
+          <a className="hero-link" href="#about">A little more <span>↓</span></a>
         </div>
         <div className="hero-signal" aria-hidden="true">
           {Array.from({ length: 28 }, (_, index) => (
             <i key={index} style={{ height: `${18 + ((index * 37) % 76)}%` }} />
           ))}
+          <span>N4ML</span>
         </div>
+      </section>
+
+      <section className="ai-disclosure" aria-labelledby="ai-note-title">
+        <div>
+          <span className="personal-kicker">A note before we continue</span>
+          <h2 id="ai-note-title">This whole site is AI experimentation.</h2>
+        </div>
+        <p>
+          I bring the source material, questions, opinions, and final calls.
+          AI helps with the code, design, writing, and analysis. Think of this
+          as a public workshop—not a perfectly polished autobiography.
+        </p>
+      </section>
+
+      <section className="about-section" id="about">
+        <div className="about-heading">
+          <span className="personal-kicker">A short version</span>
+          <h2>Hello. I&apos;m Max.</h2>
+        </div>
+        <div className="about-copy">
+          <p className="about-lede">
+            I&apos;ve been an amateur-radio operator since 2016. My callsign is
+            N4ML, and I&apos;m happiest when radio turns into a mix of competition,
+            travel, engineering, and people solving odd problems together.
+          </p>
+          <p>
+            Radio has taken me from classrooms and contest stations to WRTC
+            and the 3Y0K Bouvet Island expedition—which still feels like a
+            sentence somebody else wrote. I&apos;m also a director of the Northern
+            California DX Foundation.
+          </p>
+          <p>
+            For work, I support education and learning at ARRL: keeping
+            learning resources useful, helping instructors, and getting more
+            radio into classrooms. Away from a station, I cook, fish, camp,
+            and occasionally convince myself that a very specific problem
+            needs its own web app.
+          </p>
+          <div className="about-links">
+            <a href="https://www.arrl.org/meet-the-education-staff">ARRL profile ↗</a>
+            <a href="https://github.com/MaxFreedman">GitHub ↗</a>
+            <a href="https://www.ncdxf.org/">NCDXF ↗</a>
+          </div>
+        </div>
+        <aside className="about-facts" aria-label="Quick facts">
+          <div><span>Callsign</span><strong>N4ML</strong></div>
+          <div><span>Day job</span><strong>Amateur-radio education</strong></div>
+          <div><span>Usually doing</span><strong>Contesting, DXing, building</strong></div>
+          <div><span>This website</span><strong>An ongoing AI experiment</strong></div>
+        </aside>
       </section>
 
       <section className="project-section" id="projects">
@@ -59,8 +111,8 @@ export default function HomePage() {
       </section>
 
       <footer className="personal-footer">
-        <strong>Max Freedman</strong>
-        <span>Projects and experiments</span>
+        <strong>Max Freedman / N4ML</strong>
+        <span>Radio, projects, and AI experiments</span>
         <a href="https://github.com/MaxFreedman">github.com/MaxFreedman</a>
       </footer>
     </main>
