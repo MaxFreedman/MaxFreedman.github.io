@@ -79,7 +79,8 @@ const manifest = {
   audioStart: audioStarts[0],
   audioEnd,
   recorderClock: "Europe/London (BST, UTC+1)",
-  channelMap: { 0: "left", 1: "right" },
+  channelMap: { 0: "right", 1: "left" },
+  channelMapSource: "audio activity correlation",
   chunks: audioStarts.map((start, index) => ({
     id: index + 1,
     file: `/audio/recording-${String(index + 1).padStart(2, "0")}.mp3`,

@@ -1,33 +1,24 @@
 import assert from "node:assert/strict";
-import { readFile } from "node:fs/promises";
+import { readFile, stat } from "node:fs/promises";
 import test from "node:test";
 
-async function render() {
-  const workerUrl = new URL("../dist/server/index.js", import.meta.url);
-  workerUrl.searchParams.set("test", `${process.pid}-${Date.now()}`);
-  const { default: worker } = await import(workerUrl.href);
-  return worker.fetch(
-    new Request("http://localhost/", { headers: { accept: "text/html" } }),
-    { ASSETS: { fetch: async () => new Response("Not found", { status: 404 }) } },
-    { waitUntil() {}, passThroughOnException() {} },
-  );
-}
-
-test("server renders the MB4X archive shell", async () => {
-  const response = await render();
-  assert.equal(response.status, 200);
-  assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
-  const html = await response.text();
+test("static export contains the personal home and MB4X project", async () => {
+  const [home, archive] = await Promise.all([
+    readFile(new URL("../dist/index.html", import.meta.url), "utf8"),
+    readFile(new URL("../dist/projects/mb4x-radio-archive/index.html", import.meta.url), "utf8"),
+  ]);
+  assert.match(home, /<title>Max Freedman — Projects<\/title>/i);
+  assert.match(home, /src="\/assets\/[^\"]+\.js"/i);
+  const html = archive;
   assert.match(html, /<title>MB4X Radio Archive<\/title>/i);
-  assert.match(html, /Indexing 4,606 contacts/);
-  assert.doesNotMatch(html, /codex-preview|react-loading-skeleton/i);
+  assert.match(html, /maxfreedman\.github\.io\/projects\/mb4x-radio-archive/i);
 });
 
 test("contact index and audio timeline stay aligned", async () => {
   const [contactData, manifest, page] = await Promise.all([
     readFile(new URL("../public/data/contacts.json", import.meta.url), "utf8").then(JSON.parse),
     readFile(new URL("../public/data/manifest.json", import.meta.url), "utf8").then(JSON.parse),
-    readFile(new URL("../app/page.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../components/radio-archive/ArchivePage.tsx", import.meta.url), "utf8"),
   ]);
   assert.equal(contactData.contacts.length, 4606);
   assert.equal(contactData.summary.byRadio[0] + contactData.summary.byRadio[1], 4606);
@@ -50,4 +41,14 @@ test("contact index and audio timeline stay aligned", async () => {
   assert.match(page, /R0 solo/);
   assert.match(page, /R1 solo/);
   assert.match(page, /Swap L\/R/);
+});
+
+test("all eight audio recordings ship in the Pages artifact", async () => {
+  const files = Array.from({ length: 8 }, (_, index) =>
+    `recording-${String(index + 1).padStart(2, "0")}.mp3`
+  );
+  const sizes = await Promise.all(files.map((file) =>
+    stat(new URL(`../dist/audio/${file}`, import.meta.url)).then((entry) => entry.size)
+  ));
+  assert.ok(sizes.every((size) => size > 10_000_000));
 });
