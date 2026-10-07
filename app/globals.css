@@ -231,6 +231,21 @@ footer span:last-child { margin-left: auto; }
 .project-copy dd { margin: 7px 0 0; color: white; font-size: 20px; font-weight: 850; }
 .project-cta { align-self: flex-start; padding-bottom: 7px; border-bottom: 2px solid var(--orange); font-size: 11px; font-weight: 900; letter-spacing: 1px; text-transform: uppercase; }
 .project-cta b { margin-left: 10px; color: var(--orange); font-size: 18px; }
+.project-card + .project-card { margin-top: 32px; }
+.expedition-visual { padding: clamp(24px, 4vw, 48px); background: #dce7df; background-image: linear-gradient(rgba(16,39,49,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(16,39,49,.05) 1px, transparent 1px); background-size: 32px 32px; }
+.expedition-map { width: 100%; max-width: 360px; padding: 28px; border: 1px solid #bacbc0; border-radius: 14px; background: #f6f7ef; color: var(--navy); box-shadow: 0 18px 32px rgba(16,39,49,.09); transform: rotate(-2deg); }
+.expedition-label { font-size: 9px; font-weight: 800; letter-spacing: 1.3px; color: #51665b; }
+.expedition-route { display: flex; align-items: center; margin-top: 30px; padding: 0 10px; }
+.expedition-route i { width: 13px; height: 13px; border-radius: 50%; background: #3c7862; box-shadow: 0 0 0 5px #e0e9df; }
+.expedition-route i:last-child { background: var(--orange); }
+.expedition-route > span { flex: 1; border-top: 1px dashed #7f9c88; }
+.expedition-stages { display: flex; justify-content: space-between; margin-top: 14px; color: #51665b; font-size: 9px; }
+.expedition-map > strong { display: block; margin: 30px 0 24px; font-size: clamp(25px, 3vw, 35px); letter-spacing: -1.5px; }
+.expedition-map > strong > span { color: #3c7862; }
+.expedition-checklist { display: grid; gap: 12px; padding-top: 20px; border-top: 1px solid #d3ded2; font-size: 11px; }
+.expedition-checklist i { margin-right: 8px; color: #3c7862; font-style: normal; }
+.expedition-card .project-copy dd { font-size: clamp(13px, 1.4vw, 18px); }
+.project-access { margin-top: 14px; color: #b8c8cd; font-size: 11px; }
 .personal-footer { max-width: none; padding: 28px max(32px, calc((100vw - 1176px) / 2)); color: #7e8788; background: #f3f1e9; }
 .personal-footer a { margin-left: auto; color: var(--ink); text-decoration: none; }
 
