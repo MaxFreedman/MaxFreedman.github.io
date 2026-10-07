@@ -93,10 +93,10 @@ export default function HomePage() {
       <section className="project-section" id="projects">
         <div className="project-heading">
           <div>
-            <span className="personal-kicker">Selected project</span>
-            <h2>Listen through the log.</h2>
+            <span className="personal-kicker">Selected projects</span>
+            <h2>From the logbook to the field.</h2>
           </div>
-          <span className="project-number">01</span>
+          <span className="project-number" aria-label="2 projects">02</span>
         </div>
 
         <a className="project-card" href="/projects/mb4x-radio-archive/">
@@ -118,6 +118,39 @@ export default function HomePage() {
               <div><dt>Radios</dt><dd>2 channels</dd></div>
             </dl>
             <span className="project-cta">Open the archive <b>↗</b></span>
+          </div>
+        </a>
+
+        <a className="project-card expedition-card" href="https://expeditionops.maxfree500.chatgpt.site">
+          <div className="project-visual expedition-visual" aria-hidden="true">
+            <div className="expedition-map">
+              <span className="expedition-label">FIELD NOTES / LOGISTICS</span>
+              <div className="expedition-route"><i /><span /><i /><span /><i /></div>
+              <div className="expedition-stages"><span>Equipment</span><span>Baggage</span><span>Travel</span></div>
+              <strong>Expedition<span>Ops</span></strong>
+              <div className="expedition-checklist">
+                <span><i>✓</i> Equipment &amp; baggage</span>
+                <span><i>✓</i> Travel dependencies</span>
+                <span><i>✓</i> Field-team readiness</span>
+              </div>
+            </div>
+          </div>
+          <div className="project-copy">
+            <span className="project-tag">Logistics manager · Field operations</span>
+            <h3>ExpeditionOps</h3>
+            <p>
+              Keep equipment manifests, bag assignments, traveler arrivals,
+              and team readiness in one place. ExpeditionOps connects the details
+              of expedition planning, with baggage limits, late-equipment alerts,
+              and printable field packs to help teams prepare for the field.
+            </p>
+            <dl>
+              <div><dt>Equipment</dt><dd>Gear &amp; bags</dd></div>
+              <div><dt>Travel</dt><dd>Planning</dd></div>
+              <div><dt>Team</dt><dd>Readiness</dd></div>
+            </dl>
+            <span className="project-cta">Open ExpeditionOps <b aria-hidden="true">↗</b></span>
+            <span className="project-access">Private workspace · Sign-in required</span>
           </div>
         </a>
       </section>
