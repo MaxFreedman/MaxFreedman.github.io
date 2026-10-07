@@ -121,7 +121,7 @@ export default function HomePage() {
           </div>
         </a>
 
-        <a className="project-card expedition-card" href="https://expeditionops.maxfree500.chatgpt.site">
+        <a className="project-card expedition-card" href="/projects/expeditionops/">
           <div className="project-visual expedition-visual" aria-hidden="true">
             <div className="expedition-map">
               <span className="expedition-label">FIELD NOTES / LOGISTICS</span>
@@ -150,7 +150,7 @@ export default function HomePage() {
               <div><dt>Team</dt><dd>Readiness</dd></div>
             </dl>
             <span className="project-cta">Open ExpeditionOps <b aria-hidden="true">↗</b></span>
-            <span className="project-access">Private workspace · Sign-in required</span>
+            <span className="project-access">Browser demo · JSON import / export</span>
           </div>
         </a>
       </section>
