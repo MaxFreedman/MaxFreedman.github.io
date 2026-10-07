@@ -58,6 +58,14 @@ export default function HomePage() {
             California DX Foundation.
           </p>
           <p>
+            I like how modern technology changes what an expedition can look
+            like before anyone gets on a plane. Good software, reliable
+            communications, remote collaboration, and automation help teams
+            spread across the world plan complex logistics, stay coordinated
+            in the field, and carry out ambitious operations with better
+            information on hand.
+          </p>
+          <p>
             For work, I support education and learning at ARRL: keeping
             learning resources useful, helping instructors, and getting more
             radio into classrooms. Away from a station, I cook, fish, camp,
