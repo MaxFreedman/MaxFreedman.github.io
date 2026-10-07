@@ -1,8 +1,9 @@
 export default function HomePage() {
   return (
     <main className="personal-site">
+      <a className="skip-link" href="#about">Skip to content</a>
       <nav className="site-nav" aria-label="Primary navigation">
-        <a className="site-wordmark" href="/">MF</a>
+        <a className="site-wordmark" href="/" aria-label="Max Freedman home">MF<span className="wordmark-dot" /></a>
         <div>
           <a href="#about">About</a>
           <a href="#projects">Projects</a>
@@ -18,25 +19,28 @@ export default function HomePage() {
             I&apos;m Max. I work in amateur-radio education, operate contests,
             and build small tools for things that don&apos;t quite have tools yet.
           </p>
-          <a className="hero-link" href="#about">A little more <span>↓</span></a>
+          <div className="hero-actions">
+            <a className="hero-link" href="#projects">Explore the projects <span aria-hidden="true">↗</span></a>
+            <a className="hero-secondary" href="#about">A little about me <span aria-hidden="true">↓</span></a>
+          </div>
         </div>
         <div className="hero-signal" aria-hidden="true">
           {Array.from({ length: 28 }, (_, index) => (
-            <i key={index} style={{ height: `${18 + ((index * 37) % 76)}%` }} />
+            <i key={index} style={{ height: `${18 + ((index * 37) % 76)}%`, animationDelay: `${index * -0.13}s` }} />
           ))}
           <span>N4ML</span>
         </div>
       </section>
 
-      <section className="ai-disclosure" aria-labelledby="ai-note-title">
+      <section className="tooling-note" aria-labelledby="tooling-note-title">
         <div>
           <span className="personal-kicker">A note before we continue</span>
-          <h2 id="ai-note-title">This whole site is AI experimentation.</h2>
+          <h2 id="tooling-note-title">A workshop with modern tooling.</h2>
         </div>
         <p>
           I bring the source material, questions, opinions, and final calls.
-          AI helps with the code, design, writing, and analysis. Think of this
-          as a public workshop—not a perfectly polished autobiography.
+          Modern tooling helps with the code, design, writing, and analysis. Think of this
+          as a public workshop: a place to try things, learn, and keep building.
         </p>
       </section>
 
@@ -58,6 +62,14 @@ export default function HomePage() {
             California DX Foundation.
           </p>
           <p>
+            I like how modern technology changes what an expedition can look
+            like before anyone gets on a plane. Good software, reliable
+            communications, remote collaboration, and automation help teams
+            spread across the world plan complex logistics, stay coordinated
+            in the field, and carry out ambitious operations with better
+            information on hand.
+          </p>
+          <p>
             For work, I support education and learning at ARRL: keeping
             learning resources useful, helping instructors, and getting more
             radio into classrooms. Away from a station, I cook, fish, camp,
@@ -74,7 +86,7 @@ export default function HomePage() {
           <div><span>Callsign</span><strong>N4ML</strong></div>
           <div><span>Day job</span><strong>Amateur-radio education</strong></div>
           <div><span>Usually doing</span><strong>Contesting, DXing, building</strong></div>
-          <div><span>This website</span><strong>An ongoing AI experiment</strong></div>
+          <div><span>This website</span><strong>Exploring modern tooling</strong></div>
         </aside>
       </section>
 
@@ -112,7 +124,7 @@ export default function HomePage() {
 
       <footer className="personal-footer">
         <strong>Max Freedman / N4ML</strong>
-        <span>Radio, projects, and AI experiments</span>
+        <span>Radio, projects, and modern tooling</span>
         <a href="https://github.com/MaxFreedman">github.com/MaxFreedman</a>
       </footer>
     </main>
