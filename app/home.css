@@ -1,0 +1,118 @@
+/* Personal home page. Scoped styles leave the archive and ExpeditionOps alone. */
+.n4-home {
+  --n4-paper: #f7f6f1;
+  --n4-ink: #242822;
+  --n4-secondary: #5c615a;
+  --n4-rule: #d1d1c8;
+  --n4-accent: #a84c2e;
+  min-height: 100vh;
+  background: var(--n4-paper);
+  color: var(--n4-ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.n4-home * { box-sizing: border-box; }
+.n4-home a { color: inherit; }
+.n4-home a:focus-visible { outline: 2px solid var(--n4-accent); outline-offset: 5px; }
+.n4-container { width: min(100% - 72px, 1110px); margin-inline: auto; }
+.n4-home h1, .n4-home h2, .n4-home h3, .n4-home p { margin-top: 0; }
+.n4-home h1, .n4-home h2, .n4-home h3 { font-weight: 400; }
+.n4-home h1, .n4-home h2 { font-family: "Iowan Old Style", "Baskerville", Georgia, serif; }
+
+.n4-skip { position: absolute; top: 10px; left: 10px; padding: 10px 16px; background: white; z-index: 20; transform: translateY(-160%); }
+.n4-skip:focus { transform: translateY(0); }
+.n4-header { border-top: 4px solid var(--n4-accent); border-bottom: 1px solid var(--n4-rule); }
+.n4-header-inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; min-height: 84px; }
+.n4-brand { display: flex; gap: 15px; align-items: baseline; text-decoration: none; white-space: nowrap; }
+.n4-brand strong { font-size: 19px; font-family: "Courier New", monospace; font-weight: 700; letter-spacing: -.06em; }
+.n4-brand span { color: var(--n4-secondary); font-size: 13px; }
+.n4-nav { display: flex; align-items: center; gap: clamp(18px, 3vw, 42px); }
+.n4-nav a { padding-block: 12px; font-size: 13px; text-decoration: none; }
+.n4-nav a:hover, .n4-links a:hover { color: var(--n4-accent); }
+
+.n4-hero { display: grid; grid-template-columns: minmax(0, 1.45fr) minmax(255px, .65fr); gap: clamp(42px, 8vw, 120px); align-items: start; padding-block: clamp(90px, 11vw, 154px) 124px; }
+.n4-overline { margin-bottom: 25px; color: var(--n4-accent); font-size: 11px; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; }
+.n4-hero h1 { margin-bottom: 27px; font-size: clamp(65px, 8vw, 112px); line-height: .98; letter-spacing: -.055em; }
+.n4-lede { max-width: 680px; margin-bottom: 22px; font-size: clamp(20px, 2.15vw, 25px); line-height: 1.5; letter-spacing: -.015em; }
+.n4-hero-detail { max-width: 520px; color: var(--n4-secondary); font-size: 16px; line-height: 1.75; }
+.n4-text-link { display: inline-flex; align-items: baseline; gap: 8px; margin-top: 28px; padding-bottom: 4px; border-bottom: 1px solid var(--n4-ink); font-size: 14px; font-weight: 600; text-decoration: none; }
+.n4-text-link:hover { color: var(--n4-accent); border-color: var(--n4-accent); }
+.n4-text-link span { font-size: 18px; font-weight: 400; }
+.n4-hero-aside { margin-top: 13px; padding-top: 21px; border-top: 2px solid var(--n4-ink); }
+.n4-call-sign { font-family: "Courier New", monospace; font-size: clamp(58px, 6vw, 82px); font-weight: 700; letter-spacing: -.085em; line-height: 1.1; }
+.n4-call-period { color: var(--n4-accent); }
+.n4-hero-aside > p { margin: 5px 0 27px; color: var(--n4-secondary); font-size: 12px; }
+.n4-hero-aside dl { margin: 0; }
+.n4-hero-aside dl div { padding: 15px 0; border-top: 1px solid var(--n4-rule); }
+.n4-hero-aside dt { color: var(--n4-secondary); font-size: 11px; }
+.n4-hero-aside dd { margin: 4px 0 0; font-size: 14px; font-weight: 600; line-height: 1.45; }
+
+.n4-projects { padding-bottom: 125px; scroll-margin-top: 30px; }
+.n4-section-heading { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(240px, .7fr); align-items: end; gap: 45px; padding-bottom: 33px; border-bottom: 2px solid var(--n4-ink); }
+.n4-section-heading .n4-overline { margin-bottom: 10px; }
+.n4-section-heading h2, .n4-about h2, .n4-elsewhere h2 { margin: 0; font-size: clamp(36px, 4.25vw, 57px); line-height: 1.14; letter-spacing: -.035em; }
+.n4-section-heading > p { max-width: 330px; margin: 0 0 6px; color: var(--n4-secondary); font-size: 14px; line-height: 1.6; }
+.n4-project { display: grid; grid-template-columns: 80px minmax(0, 1fr) minmax(160px, .32fr); gap: 25px; align-items: start; padding: 39px 0 45px; border-bottom: 1px solid var(--n4-rule); }
+.n4-project-number { padding-top: 7px; color: #8a8d84; font-family: "Courier New", monospace; font-size: 13px; }
+.n4-project-type { margin: 0 0 9px; color: var(--n4-accent); font-size: 12px; }
+.n4-project h3 { margin: 0 0 13px; font-family: "Iowan Old Style", "Baskerville", Georgia, serif; font-size: clamp(29px, 3.4vw, 43px); line-height: 1.1; letter-spacing: -.03em; }
+.n4-project-body > p:not(.n4-project-type) { max-width: 580px; margin: 0 0 17px; color: var(--n4-secondary); font-size: 15px; line-height: 1.72; }
+.n4-project-note { color: var(--n4-secondary); font-size: 12px; }
+.n4-project-link { justify-self: end; margin-top: 42px; border-bottom: 1px solid var(--n4-ink); padding-bottom: 3px; font-size: 13px; font-weight: 600; white-space: nowrap; text-decoration: none; }
+.n4-project-link:hover { color: var(--n4-accent); border-color: var(--n4-accent); }
+.n4-project-link span { padding-left: 5px; font-weight: 400; }
+
+.n4-about { padding-block: 102px 110px; background: #eae9e1; scroll-margin-top: 30px; }
+.n4-about-grid { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); gap: clamp(48px, 11vw, 150px); }
+.n4-about .n4-overline, .n4-elsewhere .n4-overline { margin-bottom: 13px; }
+.n4-about-copy { max-width: 600px; padding-top: 5px; }
+.n4-about-copy p { margin: 0 0 21px; color: #444b44; font-size: 16px; line-height: 1.8; }
+.n4-about-copy p:last-child { margin-bottom: 0; }
+.n4-elsewhere { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); gap: clamp(48px, 11vw, 150px); align-items: end; padding-block: 110px 118px; scroll-margin-top: 30px; }
+.n4-links { display: grid; grid-template-columns: 1fr 1fr; column-gap: 40px; }
+.n4-links a { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; padding: 15px 0; border-bottom: 1px solid var(--n4-rule); font-size: 15px; text-decoration: none; }
+.n4-links a span { color: var(--n4-accent); }
+.n4-footer { display: block; max-width: none; margin: 0; padding: 27px 0; border-top: 1px solid var(--n4-rule); background: var(--n4-paper); color: var(--n4-secondary); font-size: 12px; letter-spacing: 0; text-transform: none; }
+.n4-home .n4-footer-inner > span { display: block; margin: 0; }
+.n4-footer-inner { display: flex; justify-content: space-between; gap: 16px; }
+
+@media (max-width: 850px) {
+  .n4-container { width: min(100% - 48px, 1110px); }
+  .n4-hero { grid-template-columns: minmax(0, 1fr) minmax(230px, .72fr); gap: 38px; padding-block: 90px 100px; }
+  .n4-hero h1 { font-size: clamp(59px, 8.5vw, 80px); }
+  .n4-project { grid-template-columns: 45px minmax(0, 1fr); }
+  .n4-project-link { grid-column: 2; justify-self: start; margin-top: 0; }
+  .n4-projects { padding-bottom: 95px; }
+}
+
+@media (max-width: 640px) {
+  .n4-container { width: min(100% - 40px, 1110px); }
+  .n4-header-inner { align-items: flex-start; flex-direction: column; justify-content: center; gap: 10px; min-height: 96px; padding-block: 17px; }
+  .n4-nav { gap: 26px; }
+  .n4-nav a { font-size: 12px; }
+  .n4-hero { display: block; padding-block: 75px 80px; }
+  .n4-hero h1 { font-size: clamp(54px, 13vw, 84px); }
+  .n4-lede { font-size: 20px; }
+  .n4-hero-aside { margin-top: 67px; }
+  .n4-call-sign { font-size: 60px; }
+  .n4-hero-aside dl { display: grid; grid-template-columns: 1fr 1fr; column-gap: 20px; }
+  .n4-section-heading { display: block; }
+  .n4-section-heading > p { margin-top: 20px; }
+  .n4-project { grid-template-columns: 28px minmax(0, 1fr); gap: 14px; padding-block: 33px; }
+  .n4-project h3 { font-size: 31px; }
+  .n4-about { padding-block: 80px; }
+  .n4-about-grid, .n4-elsewhere { display: block; }
+  .n4-about-copy { margin-top: 35px; }
+  .n4-elsewhere { padding-block: 82px; }
+  .n4-links { margin-top: 25px; }
+  .n4-footer-inner { flex-direction: column; }
+  .n4-footer-inner span { display: block; margin: 0; }
+}
+
+@media (max-width: 380px) {
+  .n4-brand span { font-size: 12px; }
+  .n4-links { grid-template-columns: 1fr; }
+  .n4-hero-aside dl { grid-template-columns: 1fr; }
+}

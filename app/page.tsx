@@ -1,165 +1,156 @@
+import "./home.css";
+
+const projects = [
+  {
+    number: "01",
+    name: "MB4X Radio Archive",
+    type: "Contest log & audio",
+    description:
+      "The MB4X log from the 2026 IARU HF Championship, with 4,606 contacts and the station's stereo audio recording. Find a QSO, cue the recording, and listen to each radio separately.",
+    note: "4,606 QSOs · 24 hours of audio",
+    href: "/projects/mb4x-radio-archive/",
+    linkText: "Explore the archive",
+  },
+  {
+    number: "02",
+    name: "ExpeditionOps",
+    type: "DXpedition planning",
+    description:
+      "A tool for the part of a DXpedition that happens before the pileups: equipment lists, baggage assignments, travel details, and all the little things that need to arrive together.",
+    note: "Browser demo · Data stays on your device",
+    href: "/projects/expeditionops/",
+    linkText: "Try the demo",
+  },
+];
+
 export default function HomePage() {
   return (
-    <main className="personal-site">
-      <a className="skip-link" href="#about">Skip to content</a>
-      <nav className="site-nav" aria-label="Primary navigation">
-        <a className="site-wordmark" href="/" aria-label="Max Freedman home">MF<span className="wordmark-dot" /></a>
-        <div>
-          <a href="#about">About</a>
-          <a href="#projects">Projects</a>
-          <a href="https://github.com/MaxFreedman">GitHub</a>
-        </div>
-      </nav>
+    <div className="n4-home">
+      <a className="n4-skip" href="#content">Skip to content</a>
 
-      <section className="personal-hero">
-        <div className="hero-copy">
-          <span className="personal-kicker">Max Freedman / N4ML</span>
-          <h1>Radio, faraway places, and overly specific software.</h1>
-          <p>
-            I&apos;m Max. I work in amateur-radio education, operate contests,
-            and build small tools for things that don&apos;t quite have tools yet.
-          </p>
-          <div className="hero-actions">
-            <a className="hero-link" href="#projects">Explore the projects <span aria-hidden="true">↗</span></a>
-            <a className="hero-secondary" href="#about">A little about me <span aria-hidden="true">↓</span></a>
-          </div>
+      <header className="n4-header">
+        <div className="n4-container n4-header-inner">
+          <a className="n4-brand" href="/" aria-label="Max Freedman, N4ML — home">
+            <strong>N4ML</strong>
+            <span>Max Freedman</span>
+          </a>
+          <nav className="n4-nav" aria-label="Main navigation">
+            <a href="#projects">Projects</a>
+            <a href="#about">About</a>
+            <a href="#elsewhere">Elsewhere</a>
+          </nav>
         </div>
-        <div className="hero-signal" aria-hidden="true">
-          {Array.from({ length: 28 }, (_, index) => (
-            <i key={index} style={{ height: `${18 + ((index * 37) % 76)}%`, animationDelay: `${index * -0.13}s` }} />
-          ))}
-          <span>N4ML</span>
-        </div>
-      </section>
+      </header>
 
-      <section className="tooling-note" aria-labelledby="tooling-note-title">
-        <div>
-          <span className="personal-kicker">A note before we continue</span>
-          <h2 id="tooling-note-title">A workshop with modern tooling.</h2>
-        </div>
-        <p>
-          I bring the source material, questions, opinions, and final calls.
-          Modern tooling helps with the code, design, writing, and analysis. Think of this
-          as a public workshop: a place to try things, learn, and keep building.
-        </p>
-      </section>
-
-      <section className="about-section" id="about">
-        <div className="about-heading">
-          <span className="personal-kicker">A short version</span>
-          <h2>Hello. I&apos;m Max.</h2>
-        </div>
-        <div className="about-copy">
-          <p className="about-lede">
-            I&apos;ve been an amateur-radio operator since 2016. My callsign is
-            N4ML, and I&apos;m happiest when radio turns into a mix of competition,
-            travel, engineering, and people solving odd problems together.
-          </p>
-          <p>
-            Radio has taken me from classrooms and contest stations to WRTC
-            and the 3Y0K Bouvet Island expedition—which still feels like a
-            sentence somebody else wrote. I&apos;m also a director of the Northern
-            California DX Foundation.
-          </p>
-          <p>
-            I like how modern technology changes what an expedition can look
-            like before anyone gets on a plane. Good software, reliable
-            communications, remote collaboration, and automation help teams
-            spread across the world plan complex logistics, stay coordinated
-            in the field, and carry out ambitious operations with better
-            information on hand.
-          </p>
-          <p>
-            For work, I support education and learning at ARRL: keeping
-            learning resources useful, helping instructors, and getting more
-            radio into classrooms. Away from a station, I cook, fish, camp,
-            and occasionally convince myself that a very specific problem
-            needs its own web app.
-          </p>
-          <div className="about-links">
-            <a href="https://www.arrl.org/meet-the-education-staff">ARRL profile ↗</a>
-            <a href="https://github.com/MaxFreedman">GitHub ↗</a>
-            <a href="https://www.ncdxf.org/">NCDXF ↗</a>
-          </div>
-        </div>
-        <aside className="about-facts" aria-label="Quick facts">
-          <div><span>Callsign</span><strong>N4ML</strong></div>
-          <div><span>Day job</span><strong>Amateur-radio education</strong></div>
-          <div><span>Usually doing</span><strong>Contesting, DXing, building</strong></div>
-          <div><span>This website</span><strong>Exploring modern tooling</strong></div>
-        </aside>
-      </section>
-
-      <section className="project-section" id="projects">
-        <div className="project-heading">
-          <div>
-            <span className="personal-kicker">Selected projects</span>
-            <h2>From the logbook to the field.</h2>
-          </div>
-          <span className="project-number" aria-label="2 projects">02</span>
-        </div>
-
-        <a className="project-card" href="/projects/mb4x-radio-archive/">
-          <div className="project-visual" aria-hidden="true">
-            <div className="project-mark">MB<span>4</span>X</div>
-            <div className="project-wave radio-zero" />
-            <div className="project-wave radio-one" />
-          </div>
-          <div className="project-copy">
-            <span className="project-tag">Interactive archive · Amateur radio</span>
-            <h3>MB4X Radio Archive</h3>
-            <p>
-              Explore 4,606 WRTC contest contacts alongside a synchronized
-              24-hour stereo field recording, with each radio isolated by channel.
+      <main id="content" tabIndex={-1}>
+        <section className="n4-hero n4-container" aria-labelledby="intro-title">
+          <div className="n4-hero-copy">
+            <p className="n4-overline">Amateur radio / N4ML</p>
+            <h1 id="intro-title">Hi, I&apos;m Max.</h1>
+            <p className="n4-lede">
+              I&apos;m an amateur radio operator who likes contests, ambitious
+              DXpeditions, and building things that make radio projects easier.
             </p>
-            <dl>
-              <div><dt>Contacts</dt><dd>4,606</dd></div>
-              <div><dt>Audio</dt><dd>24 hours</dd></div>
-              <div><dt>Radios</dt><dd>2 channels</dd></div>
-            </dl>
-            <span className="project-cta">Open the archive <b>↗</b></span>
+            <p className="n4-hero-detail">
+              This is a place for the projects I&apos;ve made, the things I&apos;ve
+              learned, and whatever I&apos;m working on next.
+            </p>
+            <a className="n4-text-link" href="#projects">See what I&apos;ve built <span aria-hidden="true">↓</span></a>
           </div>
-        </a>
 
-        <a className="project-card expedition-card" href="/projects/expeditionops/">
-          <div className="project-visual expedition-visual" aria-hidden="true">
-            <div className="expedition-map">
-              <span className="expedition-label">FIELD NOTES / LOGISTICS</span>
-              <div className="expedition-route"><i /><span /><i /><span /><i /></div>
-              <div className="expedition-stages"><span>Equipment</span><span>Baggage</span><span>Travel</span></div>
-              <strong>Expedition<span>Ops</span></strong>
-              <div className="expedition-checklist">
-                <span><i>✓</i> Equipment &amp; baggage</span>
-                <span><i>✓</i> Travel dependencies</span>
-                <span><i>✓</i> Field-team readiness</span>
+          <aside className="n4-hero-aside" aria-label="A few things about me">
+            <div className="n4-call-sign">N4ML<span className="n4-call-period">.</span></div>
+            <p>Licensed since 2016</p>
+            <dl>
+              <div>
+                <dt>On the air</dt>
+                <dd>Contesting, DX, remote operating</dd>
               </div>
+              <div>
+                <dt>At work</dt>
+                <dd>Education &amp; learning at ARRL</dd>
+              </div>
+              <div>
+                <dt>Also</dt>
+                <dd>Director, NCDXF</dd>
+              </div>
+            </dl>
+          </aside>
+        </section>
+
+        <section className="n4-projects n4-container" id="projects" aria-labelledby="projects-title">
+          <div className="n4-section-heading">
+            <div>
+              <p className="n4-overline">01 / Projects</p>
+              <h2 id="projects-title">Things I&apos;ve made.</h2>
+            </div>
+            <p>Mostly radio-related. All built to solve a real problem or explore an interesting one.</p>
+          </div>
+          <div className="n4-project-list">
+            {projects.map((project) => (
+              <article className="n4-project" key={project.number}>
+                <span className="n4-project-number" aria-hidden="true">{project.number}</span>
+                <div className="n4-project-body">
+                  <p className="n4-project-type">{project.type}</p>
+                  <h3>{project.name}</h3>
+                  <p>{project.description}</p>
+                  <span className="n4-project-note">{project.note}</span>
+                </div>
+                <a className="n4-project-link" href={project.href} aria-label={`${project.linkText}: ${project.name}`}>
+                  {project.linkText} <span aria-hidden="true">↗</span>
+                </a>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section className="n4-about" id="about" aria-labelledby="about-title">
+          <div className="n4-container n4-about-grid">
+            <div>
+              <p className="n4-overline">02 / About</p>
+              <h2 id="about-title">A little background.</h2>
+            </div>
+            <div className="n4-about-copy">
+              <p>
+                I got my amateur radio license in 2016. Since then, radio has taken me
+                into contest stations, classrooms, and expedition planning meetings.
+                I&apos;ve been involved with WRTC and the 3Y0K Bouvet Island expedition,
+                and I serve as a director of the Northern California DX Foundation.
+              </p>
+              <p>
+                My day job is in education and learning at ARRL. I work on resources
+                for instructors and students, and on making it easier for someone to
+                get started in amateur radio and find their next challenge.
+              </p>
+              <p>
+                Off the air, I cook, fish, and camp. I also have a bad habit of
+                turning something that could have been a spreadsheet into its own
+                software project.
+              </p>
             </div>
           </div>
-          <div className="project-copy">
-            <span className="project-tag">Logistics manager · Field operations</span>
-            <h3>ExpeditionOps</h3>
-            <p>
-              Keep equipment manifests, bag assignments, traveler arrivals,
-              and team readiness in one place. ExpeditionOps connects the details
-              of expedition planning, with baggage limits, late-equipment alerts,
-              and printable field packs to help teams prepare for the field.
-            </p>
-            <dl>
-              <div><dt>Equipment</dt><dd>Gear &amp; bags</dd></div>
-              <div><dt>Travel</dt><dd>Planning</dd></div>
-              <div><dt>Team</dt><dd>Readiness</dd></div>
-            </dl>
-            <span className="project-cta">Open ExpeditionOps <b aria-hidden="true">↗</b></span>
-            <span className="project-access">Browser demo · JSON import / export</span>
-          </div>
-        </a>
-      </section>
+        </section>
 
-      <footer className="personal-footer">
-        <strong>Max Freedman / N4ML</strong>
-        <span>Radio, projects, and modern tooling</span>
-        <a href="https://github.com/MaxFreedman">github.com/MaxFreedman</a>
+        <section className="n4-elsewhere n4-container" id="elsewhere" aria-labelledby="elsewhere-title">
+          <div>
+            <p className="n4-overline">03 / Elsewhere</p>
+            <h2 id="elsewhere-title">Find me around.</h2>
+          </div>
+          <div className="n4-links">
+            <a href="https://github.com/MaxFreedman">GitHub <span aria-hidden="true">↗</span></a>
+            <a href="https://www.arrl.org/meet-the-education-staff">ARRL <span aria-hidden="true">↗</span></a>
+            <a href="https://www.ncdxf.org/">NCDXF <span aria-hidden="true">↗</span></a>
+            <a href="mailto:max@n4ml.net">Email me <span aria-hidden="true">↗</span></a>
+          </div>
+        </section>
+      </main>
+
+      <footer className="n4-footer">
+        <div className="n4-container n4-footer-inner">
+          <span>© {new Date().getFullYear()} Max Freedman · N4ML</span>
+          <span>73, and thanks for stopping by.</span>
+        </div>
       </footer>
-    </main>
+    </div>
   );
 }
