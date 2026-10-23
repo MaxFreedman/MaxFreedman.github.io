@@ -121,6 +121,7 @@ export default function ArchivePage() {
   const [selected, setSelected] = useState<Contact | null>(null);
   const [activeChunk, setActiveChunk] = useState<Chunk | null>(null);
   const [currentAbsolute, setCurrentAbsolute] = useState<number | null>(null);
+  const [segmentOffset, setSegmentOffset] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [listenMode, setListenMode] = useState<ListenMode>("stereo");
   const [swapped, setSwapped] = useState(false);
@@ -159,8 +160,6 @@ export default function ArchivePage() {
       return true;
     });
   }, [contacts, query, band, mode, radio]);
-
-  useEffect(() => setVisibleCount(180), [query, band, mode, radio]);
 
   const activity = useMemo(() => {
     if (!manifest) return [];
@@ -245,6 +244,7 @@ export default function ArchivePage() {
     wasPlayingRef.current = shouldPlay || !audio.paused;
     const cue = () => {
       audio.currentTime = offset;
+      setSegmentOffset(offset);
       audio.playbackRate = speed;
       setCurrentAbsolute(target);
       setNotice(`Recording ${chunk.id} · ${formatDuration(offset)} into segment · log time is minute-precision`);
@@ -309,9 +309,31 @@ export default function ArchivePage() {
     loadAbsolute(target, isPlaying);
   };
 
+  const keyTimeline = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    if (!manifest || !contacts.length) return;
+    const start = Date.parse(manifest.contestStart);
+    const end = Date.parse(manifest.contestEnd);
+    const base = currentAbsolute ?? start;
+    let target: number;
+    switch (event.key) {
+      case "ArrowLeft": case "ArrowDown": target = base - 60_000; break;
+      case "ArrowRight": case "ArrowUp": target = base + 60_000; break;
+      case "PageDown": target = base - 3_600_000; break;
+      case "PageUp": target = base + 3_600_000; break;
+      case "Home": target = start; break;
+      case "End": target = end - 1; break;
+      default: return;
+    }
+    event.preventDefault();
+    target = Math.max(start, Math.min(end - 1, target));
+    setSelected(nearestContact(contacts, target));
+    loadAbsolute(target, isPlaying);
+  };
+
   const onTimeUpdate = () => {
     const audio = audioRef.current;
     if (!audio || !activeChunk) return;
+    setSegmentOffset(audio.currentTime);
     setCurrentAbsolute(Date.parse(activeChunk.start) + audio.currentTime * 1000);
   };
 
@@ -337,6 +359,8 @@ export default function ArchivePage() {
 
   return (
     <main className="app-shell">
+      {/* The original contest recording has no transcript; the searchable QSO log is alongside the player. */}
+      {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
       <audio
         ref={audioRef}
         preload="metadata"
@@ -379,7 +403,7 @@ export default function ArchivePage() {
           </div>
         </div>
         <div className="timeline-axis"><span>12:00</span><span>18:00</span><span>00:00</span><span>06:00</span><span>12:00</span></div>
-        <div className="timeline" onClick={clickTimeline} role="slider" aria-label="Seek contest timeline" aria-valuemin={0} aria-valuemax={24} tabIndex={0}>
+        <div className="timeline" onClick={clickTimeline} onKeyDown={keyTimeline} role="slider" aria-label="Seek contest timeline" aria-valuemin={0} aria-valuemax={24} aria-valuenow={Math.max(0, Math.min(24, ((currentAbsolute ?? contestStartMs) - contestStartMs) / 3_600_000))} aria-valuetext={formatFullTime(currentAbsolute ?? contestStartMs)} tabIndex={0}>
           {leadingGapPercent > 0 && <div className="missing-audio" style={{ width: `${leadingGapPercent}%` }}><span>no audio</span></div>}
           {trailingGapPercent > 0 && <div className="missing-audio trailing" style={{ width: `${trailingGapPercent}%` }}><span>no audio</span></div>}
           <div className="activity-lane lane-zero">
@@ -402,20 +426,20 @@ export default function ArchivePage() {
           <div className="filters">
             <label className="search-box">
               <span>⌕</span>
-              <input value={query} onChange={(event) => setQuery(event.target.value.toUpperCase())} placeholder="Search call or exchange" aria-label="Search contacts" />
-              {query && <button onClick={() => setQuery("")} aria-label="Clear search">×</button>}
+              <input value={query} onChange={(event) => { setQuery(event.target.value.toUpperCase()); setVisibleCount(180); }} placeholder="Search call or exchange" aria-label="Search contacts" />
+              {query && <button onClick={() => { setQuery(""); setVisibleCount(180); }} aria-label="Clear search">×</button>}
             </label>
             <div className="filter-row">
               <div className="segmented compact" aria-label="Mode filter">
-                {["ALL", "CW", "PH"].map((value) => <button key={value} className={mode === value ? "active" : ""} onClick={() => setMode(value)}>{value === "PH" ? "SSB" : value}</button>)}
+                {["ALL", "CW", "PH"].map((value) => <button key={value} className={mode === value ? "active" : ""} onClick={() => { setMode(value); setVisibleCount(180); }}>{value === "PH" ? "SSB" : value}</button>)}
               </div>
-              <select value={radio} onChange={(event) => setRadio(event.target.value)} aria-label="Radio filter">
+              <select value={radio} onChange={(event) => { setRadio(event.target.value); setVisibleCount(180); }} aria-label="Radio filter">
                 <option value="ALL">Both radios</option><option value="0">Radio 0</option><option value="1">Radio 1</option>
               </select>
             </div>
             <div className="band-filters">
-              <button className={band === "ALL" ? "active" : ""} onClick={() => setBand("ALL")}>All bands</button>
-              {bands.map((value) => <button key={value} className={band === value ? "active" : ""} onClick={() => setBand(value)}>{value}<span>{summary.byBand[value]}</span></button>)}
+              <button className={band === "ALL" ? "active" : ""} onClick={() => { setBand("ALL"); setVisibleCount(180); }}>All bands</button>
+              {bands.map((value) => <button key={value} className={band === value ? "active" : ""} onClick={() => { setBand(value); setVisibleCount(180); }}>{value}<span>{summary.byBand[value]}</span></button>)}
             </div>
           </div>
 
@@ -469,11 +493,11 @@ export default function ArchivePage() {
 
             <div className="transport">
               <div className="transport-time">
-                <strong>{activeChunk && audioRef.current ? formatDuration(audioRef.current.currentTime) : "00:00"}</strong>
+                <strong>{activeChunk ? formatDuration(segmentOffset) : "00:00"}</strong>
                 <span>{activeChunk ? formatDuration(activeChunk.duration) : "—"}</span>
               </div>
               <div className="scrub-track">
-                <i style={{ width: activeChunk && audioRef.current ? `${Math.min(100, (audioRef.current.currentTime / activeChunk.duration) * 100)}%` : "0%" }} />
+                <i style={{ width: activeChunk ? `${Math.min(100, (segmentOffset / activeChunk.duration) * 100)}%` : "0%" }} />
               </div>
               <div className="transport-buttons">
                 <button onClick={() => moveContact(-1)} aria-label="Previous contact">‹<small>QSO</small></button>
