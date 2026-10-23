@@ -281,8 +281,15 @@ export default function ArchivePage() {
       return;
     }
     if (audio.paused) {
-      await ensureAudioGraph();
-      await audio.play();
+      try {
+        await ensureAudioGraph();
+        await audio.play();
+      } catch (error) {
+        setIsPlaying(!audio.paused);
+        if (!(error instanceof DOMException && error.name === "AbortError")) {
+          setNotice("Unable to start playback. Try again.");
+        }
+      }
     } else {
       audio.pause();
     }
